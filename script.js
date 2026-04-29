@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+// Storage & Constants
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 const STORAGE_KEYS = {
   user: "curator_user",
   posts: "curator_posts_v2",
@@ -6,6 +10,10 @@ const STORAGE_KEYS = {
   loaded: "curator_seeded_v2",
 };
 
+<<<<<<< HEAD
+// Predefined art background classes
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 const artLibrary = [
   "art-swirl",
   "art-forest",
@@ -15,6 +23,10 @@ const artLibrary = [
   "art-frame",
 ];
 
+<<<<<<< HEAD
+// Default sample posts for first-time load
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 const seedPosts = [
   {
     id: 101,
@@ -176,6 +188,10 @@ const seedPosts = [
   },
 ];
 
+<<<<<<< HEAD
+// Global app state (single source of truth)
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 const state = {
   user: null,
   posts: [],
@@ -188,6 +204,10 @@ const state = {
   feedFilter: "all",
 };
 
+<<<<<<< HEAD
+// DOM Element References
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 const authScreen = document.querySelector("#auth-screen");
 const appScreen = document.querySelector("#app-screen");
 const detailScreen = document.querySelector("#detail-screen");
@@ -245,11 +265,32 @@ const commentCount = document.querySelector("#comment-count");
 const loadMoreComments = document.querySelector("#load-more-comments");
 const toast = document.querySelector("#toast");
 
+<<<<<<< HEAD
+// UI runtime variables
+let commentDisplayCount = 3;
+let pendingUploads = [];
+
+// App entry point
+initialize();
+
+/* ==============================================
+            【 STUDENT A RESPONSIBILITIES 】
+   Auth, State, Storage, Navigation, Feed, Lists, Explore, Bookmarks, Analytics
+============================================== */
+
+/* Initialize the entire application
+ * 1. Seed default data
+ * 2. Load state from localStorage
+ * 3. Bind all UI events
+ * 4. Render first screen
+ */
+=======
 let commentDisplayCount = 3;
 let pendingUploads = [];
 
 initialize();
 
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function initialize() {
   seedDataIfNeeded();
   hydrateState();
@@ -257,6 +298,12 @@ function initialize() {
   renderApp();
 }
 
+<<<<<<< HEAD
+/**
+ * Seed initial posts/bookmarks if first time visiting
+ */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function seedDataIfNeeded() {
   if (!localStorage.getItem(STORAGE_KEYS.loaded)) {
     localStorage.setItem(STORAGE_KEYS.posts, JSON.stringify(seedPosts));
@@ -266,6 +313,10 @@ function seedDataIfNeeded() {
   }
 }
 
+<<<<<<< HEAD
+/* Load saved user, posts, bookmarks, likes from localStorage */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function hydrateState() {
   state.user =
     readStorage(STORAGE_KEYS.user) || {
@@ -280,6 +331,10 @@ function hydrateState() {
   state.likes = readStorage(STORAGE_KEYS.likes) || [];
 }
 
+<<<<<<< HEAD
+/* Bind all click/input/submit events to DOM elements */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function bindEvents() {
   authForm.addEventListener("submit", handleSignup);
   demoLogin.addEventListener("click", handleDemoLogin);
@@ -315,7 +370,11 @@ function bindEvents() {
   commentForm.addEventListener("submit", handleCommentSubmit);
   loadMoreComments.addEventListener("click", showMoreComments);
 }
+<<<<<<< HEAD
+/* Show auth screen or main app based on login status */
+=======
 
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderApp() {
   const isAuthenticated = Boolean(state.user);
   authScreen.classList.toggle("hidden", isAuthenticated);
@@ -329,6 +388,10 @@ function renderApp() {
   renderAppViews();
 }
 
+<<<<<<< HEAD
+/* Refresh all main views: feed, community, explore, bookmarks, analytics */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderAppViews() {
   const filteredPosts = filterPosts(globalSearch.value);
   renderFeedGrid(filteredPosts);
@@ -339,6 +402,10 @@ function renderAppViews() {
   renderTrending();
 }
 
+<<<<<<< HEAD
+/* Inject current user data into UI (sidebar, profile, greetings) */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function applyUserToUI() {
   const initials = getInitials(state.user.name);
   sidebarName.textContent = state.user.name;
@@ -354,6 +421,10 @@ function applyUserToUI() {
   settingsBio.value = state.user.bio || "";
 }
 
+<<<<<<< HEAD
+/* Switch between main pages (feed, explore, bookmarks, etc.) */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function switchView(view) {
   state.currentView = view;
   Object.entries(viewNodes).forEach(([key, node]) => {
@@ -364,6 +435,10 @@ function switchView(view) {
   });
 }
 
+<<<<<<< HEAD
+/* Render the main feed grid with featured + standard cards */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderFeedGrid(posts) {
   const source = [...posts].sort((a, b) => b.createdAt - a.createdAt);
   const primary = source[0];
@@ -402,6 +477,10 @@ function renderFeedGrid(posts) {
   }
 }
 
+<<<<<<< HEAD
+/* Create a single feed card DOM element */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function createFeedCard(post) {
   const card = document.createElement("article");
   card.className = "feed-card";
@@ -427,6 +506,10 @@ function createFeedCard(post) {
   return card;
 }
 
+<<<<<<< HEAD
+/* Render community list view (horizontal image + text cards) */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderCommunityList(posts) {
   let list = [...posts].sort((a, b) => b.createdAt - a.createdAt);
 
@@ -497,6 +580,10 @@ function renderCommunityList(posts) {
   });
 }
 
+<<<<<<< HEAD
+/* Render explore page (grid of popular posts) */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderExplore(posts) {
   exploreGrid.innerHTML = posts
     .slice()
@@ -524,13 +611,22 @@ function renderExplore(posts) {
   });
 }
 
+<<<<<<< HEAD
+/* Render saved bookmarks page */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderBookmarks() {
   const bookmarked = state.posts.filter((post) => isBookmarked(post.id));
 
   bookmarkGrid.innerHTML = bookmarked.length
     ? bookmarked
+<<<<<<< HEAD
+      .map(
+        (post) => `
+=======
         .map(
           (post) => `
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
             <article class="bookmark-card">
               <div class="bookmark-cover ${post.coverType} ${post.gallery[0].type === "image" ? "image-cover" : ""}" ${backgroundForAsset(post.gallery[0])}></div>
               <div class="bookmark-body">
@@ -543,8 +639,13 @@ function renderBookmarks() {
               </div>
             </article>
           `
+<<<<<<< HEAD
+      )
+      .join("")
+=======
         )
         .join("")
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
     : `<article class="stat-card"><span class="micro-label">Empty</span><h3>0</h3><p>You have not bookmarked any curated finds yet.</p></article>`;
 
   bookmarkGrid.querySelectorAll(".open-bookmark").forEach((button) => {
@@ -552,6 +653,11 @@ function renderBookmarks() {
   });
 }
 
+<<<<<<< HEAD
+/**
+/* Render analytics stats cards */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderAnalytics(posts) {
   const totalLikes = posts.reduce((sum, post) => sum + post.likes, 0);
   const totalComments = posts.reduce((sum, post) => sum + post.comments.length, 0);
@@ -582,6 +688,11 @@ function renderAnalytics(posts) {
   `;
 }
 
+<<<<<<< HEAD
+/**
+/* Render trending sidebar list */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderTrending() {
   const ranked = [...state.posts]
     .sort((a, b) => trendScore(b, state.currentTrend) - trendScore(a, state.currentTrend))
@@ -602,6 +713,81 @@ function renderTrending() {
     .join("");
 }
 
+<<<<<<< HEAD
+/* Handle signup form submission */
+function handleSignup(event) {
+  event.preventDefault();
+  const user = {
+    name: document.querySelector("#signup-name").value.trim(),
+    email: document.querySelector("#signup-email").value.trim(),
+    username: document.querySelector("#signup-username").value.trim(),
+    role: "Curator Gold",
+    bio: "Building a curated library of unique finds worth saving, sharing, and discussing.",
+  };
+
+  state.user = user;
+  persistState();
+  showToast("Account created. Welcome to The Curator.");
+  renderApp();
+}
+
+/* Quick demo login (no real auth) */
+function handleDemoLogin() {
+  state.user = {
+    name: "Alex Rivera",
+    email: "alex@curator.gold",
+    username: "alexrivera",
+    role: "Curator Gold",
+    bio: "Curating premium interiors, digital artifacts, and spatial references worth revisiting.",
+  };
+  persistState();
+  showToast("Logged in with the demo curator account.");
+  renderApp();
+}
+
+/**
+ * Toggle password visibility
+ */
+function togglePasswordVisibility() {
+  const show = signupPassword.type === "password";
+  signupPassword.type = show ? "text" : "password";
+  togglePassword.textContent = show ? "Hide" : "Show";
+}
+
+/* Save profile settings to state & storage */
+function saveSettings(event) {
+  event.preventDefault();
+  state.user = {
+    ...state.user,
+    name: settingsName.value.trim(),
+    username: settingsUsername.value.trim(),
+    email: settingsEmail.value.trim(),
+    bio: settingsBio.value.trim(),
+  };
+  persistState();
+  applyUserToUI();
+  showToast("Profile updated.");
+}
+
+/**
+ * Logout: clear user and return to auth screen
+ */
+function logout() {
+  localStorage.removeItem(STORAGE_KEYS.user);
+  state.user = null;
+  renderApp();
+}
+
+/* ==============================================
+            【 STUDENT B RESPONSIBILITIES 】
+   Core: Detail View, Comments, Create Post, Actions (Like/Save/Repost/Delete), Modals, Helpers
+============================================== */
+
+/**
+ * Open full post detail page
+ */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function openDetailView(postId) {
   const post = findPost(postId);
   if (!post) return;
@@ -616,18 +802,30 @@ function openDetailView(postId) {
   renderDetail(post);
 }
 
+<<<<<<< HEAD
+/* Close detail view and return to main app */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function closeDetailView() {
   detailScreen.classList.add("hidden");
   appScreen.classList.remove("hidden");
   state.currentDetailId = null;
 }
 
+<<<<<<< HEAD
+/* Render entire detail page: hero gallery + info + comments */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderDetail(post) {
   renderDetailHero(post);
   renderDetailInfo(post);
   renderComments(post);
 }
 
+<<<<<<< HEAD
+/* Render main hero image + thumbnail gallery */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderDetailHero(post) {
   const currentAsset = post.gallery[state.currentDetailImageIndex] || post.gallery[0];
   detailHero.className = "detail-hero";
@@ -656,6 +854,10 @@ function renderDetailHero(post) {
   });
 }
 
+<<<<<<< HEAD
+/* Render post info, author, stats, actions */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderDetailInfo(post) {
   const canDelete =
     post.origin === "user" ||
@@ -670,7 +872,11 @@ function renderDetailInfo(post) {
       </div>
       <div class="interaction-row">
         <button class="icon-button detail-like ${isLiked(post.id) ? "active" : ""}" data-id="${post.id}" type="button">♥</button>
+<<<<<<< HEAD
+        <button class="icon-button detail-save ${isBookmarked(post.id) ? "active" : ""}" data-id="${post.id}" type="button">📚</button>
+=======
         <button class="icon-button detail-save ${isBookmarked(post.id) ? "active" : ""}" data-id="${post.id}" type="button">⌑</button>
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
       </div>
     </div>
 
@@ -756,6 +962,10 @@ function renderDetailInfo(post) {
   });
 }
 
+<<<<<<< HEAD
+/* Render comment list */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function renderComments(post) {
   const commentsToShow = post.comments.slice(0, commentDisplayCount);
   commentCount.textContent = post.comments.length;
@@ -781,6 +991,9 @@ function renderComments(post) {
   loadMoreComments.classList.toggle("hidden", commentDisplayCount >= post.comments.length);
 }
 
+<<<<<<< HEAD
+/* Open create post modal */
+=======
 function handleSignup(event) {
   event.preventDefault();
   const user = {
@@ -836,10 +1049,15 @@ function logout() {
   renderApp();
 }
 
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function openCreatePostModal() {
   createModal.classList.remove("hidden");
 }
 
+<<<<<<< HEAD
+/* Close create post modal and reset form */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function closeCreatePostModal() {
   createModal.classList.add("hidden");
   createPostForm.reset();
@@ -847,6 +1065,10 @@ function closeCreatePostModal() {
   pendingUploads = [];
 }
 
+<<<<<<< HEAD
+/* Handle image upload preview */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 async function handleImageSelection(event) {
   const files = Array.from(event.target.files || []).slice(0, 4);
   pendingUploads = await Promise.all(files.map(fileToDataUrl));
@@ -855,6 +1077,11 @@ async function handleImageSelection(event) {
     .join("");
 }
 
+<<<<<<< HEAD
+
+/* Create and publish new post */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function handleCreatePost(event) {
   event.preventDefault();
 
@@ -904,6 +1131,10 @@ function handleCreatePost(event) {
   showToast("Post published and added to your curated feed.");
 }
 
+<<<<<<< HEAD
+/* Submit new comment */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function handleCommentSubmit(event) {
   event.preventDefault();
   if (!state.currentDetailId) return;
@@ -925,12 +1156,20 @@ function handleCommentSubmit(event) {
   showToast("Comment posted.");
 }
 
+<<<<<<< HEAD
+/* Load 3 more comments */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function showMoreComments() {
   if (!state.currentDetailId) return;
   commentDisplayCount += 3;
   renderComments(findPost(state.currentDetailId));
 }
 
+<<<<<<< HEAD
+/* Handle post actions: like, save, repost, comment */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function handlePostAction(action, postId) {
   const post = findPost(postId);
   if (!post) return;
@@ -954,6 +1193,10 @@ function handlePostAction(action, postId) {
   renderAppViews();
 }
 
+<<<<<<< HEAD
+/* Delete post from state and storage */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function deletePost(postId) {
   state.posts = state.posts.filter((post) => post.id !== postId);
   state.bookmarks = state.bookmarks.filter((id) => id !== postId);
@@ -964,6 +1207,10 @@ function deletePost(postId) {
   showToast("Post deleted from your curator space.");
 }
 
+<<<<<<< HEAD
+/* Toggle like status for a post */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function toggleLike(post) {
   if (isLiked(post.id)) {
     state.likes = state.likes.filter((id) => id !== post.id);
@@ -976,6 +1223,10 @@ function toggleLike(post) {
   }
 }
 
+<<<<<<< HEAD
+/* Toggle bookmark status for a post */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function toggleBookmark(postId) {
   if (isBookmarked(postId)) {
     state.bookmarks = state.bookmarks.filter((id) => id !== postId);
@@ -989,6 +1240,10 @@ function toggleBookmark(postId) {
   }
 }
 
+<<<<<<< HEAD
+/* Repost an existing post */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function repostPost(post) {
   const repost = {
     ...structuredClone(post),
@@ -1012,6 +1267,12 @@ function repostPost(post) {
   showToast("Post reposted to your curated stream.");
 }
 
+<<<<<<< HEAD
+// Shared Helper Functions
+
+/* Filter posts by search query */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function filterPosts(query = "") {
   const normalized = query.trim().toLowerCase();
   if (!normalized) return [...state.posts];
@@ -1031,6 +1292,10 @@ function filterPosts(query = "") {
   );
 }
 
+<<<<<<< HEAD
+/* Save full state to localStorage */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function persistState() {
   localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(state.user));
   localStorage.setItem(STORAGE_KEYS.posts, JSON.stringify(state.posts));
@@ -1038,6 +1303,10 @@ function persistState() {
   localStorage.setItem(STORAGE_KEYS.likes, JSON.stringify(state.likes));
 }
 
+<<<<<<< HEAD
+/* Safely read JSON from localStorage */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function readStorage(key) {
   try {
     const raw = localStorage.getItem(key);
@@ -1047,10 +1316,18 @@ function readStorage(key) {
   }
 }
 
+<<<<<<< HEAD
+/* Find a single post by ID */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function findPost(postId) {
   return state.posts.find((post) => post.id === postId);
 }
 
+<<<<<<< HEAD
+/* Get user initials from full name */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function getInitials(name = "") {
   return name
     .split(" ")
@@ -1060,15 +1337,27 @@ function getInitials(name = "") {
     .join("");
 }
 
+<<<<<<< HEAD
+/* Get first name from full name */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function firstName(name = "") {
   return name.split(" ")[0] || name;
 }
 
+<<<<<<< HEAD
+/* Format large numbers (1k, 2.5k) */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function formatCount(value) {
   if (value >= 1000) return `${(value / 1000).toFixed(1)}k`;
   return String(value);
 }
 
+<<<<<<< HEAD
+/* Calculate trending score */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function trendScore(post, window) {
   const base = post.likes + post.saves * 2 + post.reposts * 3 + post.comments.length * 2;
   if (window === "daily") return Math.round(base * 0.36);
@@ -1076,23 +1365,43 @@ function trendScore(post, window) {
   return base;
 }
 
+<<<<<<< HEAD
+/* Check if post is bookmarked */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function isBookmarked(postId) {
   return state.bookmarks.includes(postId);
 }
 
+<<<<<<< HEAD
+/* Check if post is liked */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function isLiked(postId) {
   return state.likes.includes(postId);
 }
 
+<<<<<<< HEAD
+/* Get random art class */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function randomArt() {
   return artLibrary[Math.floor(Math.random() * artLibrary.length)];
 }
 
+<<<<<<< HEAD
+/* Create inline background-image style for assets */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function backgroundForAsset(asset) {
   if (!asset || asset.type !== "image") return "";
   return `style="background-image:url('${escapeAttribute(asset.value)}')"`;
 }
 
+<<<<<<< HEAD
+/* Convert file to base64 data URL */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1102,6 +1411,10 @@ function fileToDataUrl(file) {
   });
 }
 
+<<<<<<< HEAD
+/* Show temporary toast message */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function showToast(message) {
   toast.textContent = message;
   toast.classList.remove("hidden");
@@ -1109,6 +1422,10 @@ function showToast(message) {
   showToast.timer = setTimeout(() => toast.classList.add("hidden"), 2200);
 }
 
+<<<<<<< HEAD
+/* Escape HTML to prevent XSS */
+=======
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
 function escapeHtml(value = "") {
   return value
     .replaceAll("&", "&amp;")
@@ -1118,6 +1435,13 @@ function escapeHtml(value = "") {
     .replaceAll("'", "&#39;");
 }
 
+<<<<<<< HEAD
+/* Escape HTML attributes */
 function escapeAttribute(value = "") {
   return String(value).replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 }
+=======
+function escapeAttribute(value = "") {
+  return String(value).replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+}
+>>>>>>> 10ae9af77b080ce35e71b659795c0e254b22c47c
